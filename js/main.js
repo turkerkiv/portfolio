@@ -21,18 +21,18 @@ const totalScroll = storyContainer.scrollHeight - window.innerHeight;
 // ============================
 
 gsap.to(character, {
-    scale: 3.5, // Karakterin büyüme oranı (başlangıç 1x -> son 3.5x)
+    scale: 3, // Karakterin büyüme oranı (başlangıç 1x -> son 3x)
     scrollTrigger: {
         trigger: storyContainer,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 1, // Smooth scrubbing
+        scrub: 0.3, // Daha hızlı tepki için azaltıldı
         onUpdate: (self) => {
             // Scroll ilerlemesini hesapla (0-1 arası)
             const progress = self.progress;
 
             // Karakteri yatayda hareket ettir (soldan sağa)
-            const moveDistance = window.innerWidth * 0.75; // Ekranın %75'i kadar
+            const moveDistance = window.innerWidth * 0.7; // Ekranın %70'i kadar
             const currentX = moveDistance * progress;
 
             characterContainer.style.left = `calc(5% + ${currentX}px)`;
@@ -41,9 +41,7 @@ gsap.to(character, {
             // console.log(`Progress: ${(progress * 100).toFixed(1)}%`);
         }
     }
-});
-
-// ============================
+});// ============================
 // SAHNE FADE-IN ANİMASYONLARI
 // ============================
 
@@ -51,16 +49,16 @@ scenes.forEach((scene, index) => {
     gsap.fromTo(scene,
         {
             opacity: 0,
-            x: 100,
+            y: 50,
         },
         {
             opacity: 1,
-            x: 0,
+            y: 0,
             scrollTrigger: {
                 trigger: scene,
-                start: 'top 80%', // Sahne ekranın %80'ine geldiğinde
-                end: 'top 30%',   // %30'a geldiğinde
-                scrub: 0.5,
+                start: 'top 85%', // Sahne ekranın %85'ine geldiğinde
+                end: 'top 60%',   // %60'a geldiğinde
+                scrub: 0.2, // Daha hızlı tepki
                 onEnter: () => scene.classList.add('active'),
                 onLeave: () => scene.classList.remove('active'),
                 onEnterBack: () => scene.classList.add('active'),
@@ -69,37 +67,34 @@ scenes.forEach((scene, index) => {
         }
     );
 
-    // Sahne içeriklerine paralaks efekti
+    // Sahne içeriklerine hafif paralaks efekti
     const sceneContent = scene.querySelector('.scene-content');
     if (sceneContent) {
         gsap.to(sceneContent, {
-            y: -50,
+            y: -30,
             scrollTrigger: {
                 trigger: scene,
                 start: 'top bottom',
                 end: 'bottom top',
-                scrub: 1
+                scrub: 0.3 // Daha hızlı paralaks
             }
         });
     }
-});
-
-// ============================
+});// ============================
 // YOL ÇİZGİSİ PROGRESS ANİMASYONU
 // ============================
 
 const roadLine = document.querySelector('#road-line');
 
 gsap.to(roadLine, {
-    background: 'linear-gradient(to right, #10b981 0%, #10b981 var(--progress), #475569 var(--progress), #475569 100%)',
     scrollTrigger: {
         trigger: storyContainer,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: 1,
+        scrub: 0.2, // Daha hızlı tepki
         onUpdate: (self) => {
             const progress = self.progress * 100;
-            document.documentElement.style.setProperty('--progress', `${progress}%`);
+            roadLine.style.background = `linear-gradient(to right, #ff6b35 0%, #ff6b35 ${progress}%, #535353 ${progress}%, #535353 100%)`;
         }
     }
 });
@@ -153,9 +148,9 @@ if (finalScene && finaleTitle) {
             rotation: 0,
             scrollTrigger: {
                 trigger: finalScene,
-                start: 'top 60%',
+                start: 'top 70%',
                 end: 'center center',
-                scrub: 1
+                scrub: 0.3 // Daha hızlı tepki
             }
         }
     );
