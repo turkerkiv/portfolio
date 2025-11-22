@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kariyer Hikayem - İnteraktif Yolculuk</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Karakter Container - Sayfada fixed kalacak -->
+    <div id="character-container">
+        <div id="character">
+            <div class="character-body">
+                <div class="character-head"></div>
+                <div class="character-torso"></div>
+                <div class="character-leg left"></div>
+                <div class="character-leg right"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Yol çizgisi -->
+    <div id="road-line"></div>
+
+    <!-- Hikaye Sahneleri -->
+    <div id="story-container">
+
+        <!-- Sahne 1: Başlangıç -->
+        <section class="scene" data-scene="1">
+            <div class="scene-content">
+                <div class="scene-number">01</div>
+                <h2 class="scene-title">İlk Adımlar</h2>
+                <p class="scene-description">
+                    Daha önceleri birkaç denemem olmuş olsa da hep bıraktım.
+                    Ama en sonunda 2022 yılında yazılım geliştirme serüvenine başladım.
+                </p>
+                <div class="scene-year">2022</div>
+            </div>
+        </section>
+
+        <!-- Sahne 2: C# Temelleri -->
+        <section class="scene" data-scene="2">
+            <div class="scene-content">
+                <div class="scene-number">02</div>
+                <h2 class="scene-title">Masaüstü ve Konsol</h2>
+                <p class="scene-description">
+                    Murat Yücedağ'ın C# kurslarından sonra Mosh Hamedani'nin kurslarına devam ettim.
+                    Masaüstü ve konsol uygulamaları geliştirdim.
+                </p>
+                <div class="scene-icon">🖥️</div>
+            </div>
+        </section>
+
+        <!-- Sahne 3: Oyun Geliştirme -->
+        <section class="scene" data-scene="3">
+            <div class="scene-content">
+                <div class="scene-number">03</div>
+                <h2 class="scene-title">Game Jam Yolu</h2>
+                <p class="scene-description">
+                    Bir arkadaşımdan ilham alarak oyun geliştirmeye merak saldım ve GameDev.tv kurslarıyla öğrendim.
+                    1.5 yıl içinde Game Jam'lere katılarak kendimi geliştirdim.
+                </p>
+                <div class="scene-icon">🎮</div>
+            </div>
+        </section>
+
+        <!-- Sahne 4: İlk Profesyonel Deneyim -->
+        <section class="scene" data-scene="4">
+            <div class="scene-content">
+                <div class="scene-number">04</div>
+                <h2 class="scene-title">Upwork İşleri</h2>
+                <p class="scene-description">
+                    Asıl profesyonel deneyim olarak 4 aylık bir süreçte 2 adet Upwork işi aldım
+                    ve başarıyla tamamladım.
+                </p>
+                <div class="scene-icon">💼</div>
+            </div>
+        </section>
+
+        <!-- Sahne 5: Üniversiteye Giriş -->
+        <section class="scene" data-scene="5">
+            <div class="scene-content">
+                <div class="scene-number">05</div>
+                <h2 class="scene-title">Yeni Bir Kapı</h2>
+                <p class="scene-description">
+                    2023 Eylül ayında Erciyes Üniversitesi Bilgisayar Mühendisliğini kazandım.
+                </p>
+                <div class="scene-year">2023</div>
+            </div>
+        </section>
+
+        <!-- Sahne 6: Akademik Başarı -->
+        <section class="scene" data-scene="6">
+            <div class="scene-content">
+                <div class="scene-number">06</div>
+                <h2 class="scene-title">TeknoJam24 Birinciliği</h2>
+                <p class="scene-description">
+                    İlk yılımda TeknoJam24 Game Jam yarışmasında 1. oldum ve bilgisayar bilimlerine
+                    genel bir merakla alanlarımı genişletmeye başladım.
+                </p>
+                <div class="scene-icon">🏆</div>
+            </div>
+        </section>
+
+        <!-- Sahne 7: Kulüp ve Projeler -->
+        <section class="scene" data-scene="7">
+            <div class="scene-content">
+                <div class="scene-number">07</div>
+                <h2 class="scene-title">Yapay Zeka Kulübü & Frontend</h2>
+                <p class="scene-description">
+                    2. senemde Yapay Zeka Kulübü yönetim kurulundaydım.
+                    Hocalarımın projesinde frontend developer olarak çalışma fırsatı buldum.
+                </p>
+                <div class="scene-icon">🤖</div>
+            </div>
+        </section>
+
+        <!-- Sahne 8: Kısmi Zamanlı İş ve Staj -->
+        <section class="scene" data-scene="8">
+            <div class="scene-content">
+                <div class="scene-number">08</div>
+                <h2 class="scene-title">Yapay Zeka ve Ağ Mimarileri</h2>
+                <p class="scene-description">
+                    Okulun Bilgi İşlem Daire Başkanlığında yapay zeka çalışmaları yaptım.
+                    Yaz stajımı ağ mimarileri üzerine tamamladım.
+                </p>
+                <div class="scene-icon">🌐</div>
+            </div>
+        </section>
+
+        <!-- Sahne 9: DevFest ve Liderlik -->
+        <section class="scene" data-scene="9">
+            <div class="scene-content">
+                <div class="scene-number">09</div>
+                <h2 class="scene-title">Proje Yönetimi Sorumlusu</h2>
+                <p class="scene-description">
+                    3. yılımda YazTek Kulübü yönetim kurulundaydım ve Google işbirliği ile DevFest düzenledik.
+                    TÜBİTAK 2025 projelerine mentörlük yaptım.
+                </p>
+                <div class="scene-icon">🎯</div>
+            </div>
+        </section>
+
+        <!-- Sahne 10: Güncel Profil -->
+        <section class="scene" data-scene="10">
+            <div class="scene-content">
+                <div class="scene-number">10</div>
+                <h2 class="scene-title">Fullstack ve Görüntü İşleme</h2>
+                <p class="scene-description">
+                    Şu aralar 3. sınıfımdayım ve okulumun bilgi işleminde kısmi zamanlı çalışıyorum.
+                    Kendimi backend odaklı fullstack developer olarak tanımlıyorum.
+                    AI alanında da özellikle görüntü işleme odaklı modellerde kendimi geliştiriyorum.
+                </p>
+                <div class="scene-year">2025</div>
+            </div>
+        </section>
+
+        <!-- Final Scene - Boşluk -->
+        <section class="scene final" data-scene="finale">
+            <div class="scene-content">
+                <h2 class="finale-title">Yolculuk Devam Ediyor...</h2>
+                <p class="finale-text">Ve bu, sadece başlangıç.</p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- GSAP ve ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Ana Script -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

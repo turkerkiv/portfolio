@@ -1,0 +1,424 @@
+/* ============================
+   GENEL STILLER VE RESET
+   ============================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #6366f1;
+    --secondary-color: #8b5cf6;
+    --accent-color: #ec4899;
+    --bg-dark: #0f172a;
+    --bg-light: #1e293b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --road-color: #475569;
+    --success-color: #10b981;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom, var(--bg-dark) 0%, var(--bg-light) 100%);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* ============================
+   KARAKTER CONTAINER
+   ============================ */
+#character-container {
+    position: fixed;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    pointer-events: none;
+}
+
+#character {
+    position: relative;
+    width: 60px;
+    height: 80px;
+    transition: transform 0.3s ease;
+}
+
+/* Karakter Gövdesi */
+.character-body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Kafa */
+.character-head {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25px;
+    height: 25px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    border: 3px solid var(--text-primary);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+}
+
+/* Gövde */
+.character-torso {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 30px;
+    background: var(--secondary-color);
+    border-radius: 10px;
+    border: 2px solid var(--text-primary);
+}
+
+/* Bacaklar */
+.character-leg {
+    position: absolute;
+    bottom: 0;
+    width: 8px;
+    height: 30px;
+    background: var(--primary-color);
+    border-radius: 4px;
+    border: 2px solid var(--text-primary);
+}
+
+.character-leg.left {
+    left: 15px;
+    animation: walk-left 0.6s infinite alternate;
+}
+
+.character-leg.right {
+    right: 15px;
+    animation: walk-right 0.6s infinite alternate;
+}
+
+/* Yürüme Animasyonu */
+@keyframes walk-left {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-15deg);
+    }
+}
+
+@keyframes walk-right {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(15deg);
+    }
+}
+
+/* ============================
+   YOL ÇİZGİSİ
+   ============================ */
+#road-line {
+    position: fixed;
+    left: 5%;
+    top: 50%;
+    width: 90%;
+    height: 4px;
+    background: linear-gradient(to right,
+            var(--road-color) 0%,
+            var(--primary-color) 50%,
+            var(--success-color) 100%);
+    transform: translateY(-50%);
+    z-index: 10;
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.4);
+}
+
+/* ============================
+   HİKAYE CONTAINER
+   ============================ */
+#story-container {
+    position: relative;
+    width: 100%;
+    padding-top: 100vh;
+}
+
+/* ============================
+   SAHNE BÖLÜMÜ
+   ============================ */
+.scene {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 4rem 8%;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scene.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Sahne İçeriği */
+.scene-content {
+    max-width: 600px;
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 3rem;
+    border-radius: 20px;
+    border: 2px solid rgba(99, 102, 241, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.scene-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+}
+
+/* Sahne Numarası */
+.scene-number {
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(99, 102, 241, 0.15);
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    line-height: 1;
+    user-select: none;
+}
+
+/* Sahne Başlığı */
+.scene-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Sahne Açıklaması */
+.scene-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+/* Sahne İkonları */
+.scene-icon {
+    font-size: 3rem;
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    opacity: 0.3;
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
+}
+
+.scene:hover .scene-icon {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Yıl Etiketi */
+.scene-year {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    font-weight: 700;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+}
+
+/* ============================
+   FİNAL SAHNESI
+   ============================ */
+.scene.final {
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.finale-title {
+    font-size: 4rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color), var(--success-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.finale-text {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.02);
+    }
+}
+
+/* ============================
+   RESPONSIVE TASARIM
+   ============================ */
+@media (max-width: 1024px) {
+    .scene-title {
+        font-size: 2rem;
+    }
+
+    .scene-description {
+        font-size: 1rem;
+    }
+
+    .scene-number {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #character-container {
+        left: 3%;
+    }
+
+    #road-line {
+        left: 3%;
+        width: 94%;
+    }
+
+    #character {
+        width: 45px;
+        height: 60px;
+    }
+
+    .character-head {
+        width: 20px;
+        height: 20px;
+    }
+
+    .character-torso {
+        width: 15px;
+        height: 25px;
+        top: 20px;
+    }
+
+    .character-leg {
+        width: 6px;
+        height: 20px;
+    }
+
+    .scene {
+        padding: 2rem 5%;
+    }
+
+    .scene-content {
+        padding: 2rem;
+    }
+
+    .scene-title {
+        font-size: 1.5rem;
+    }
+
+    .scene-description {
+        font-size: 0.95rem;
+    }
+
+    .scene-number {
+        font-size: 3rem;
+        top: -10px;
+        right: 10px;
+    }
+
+    .scene-icon {
+        font-size: 2rem;
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .finale-title {
+        font-size: 2.5rem;
+    }
+
+    .finale-text {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .scene-title {
+        font-size: 1.3rem;
+    }
+
+    .scene-description {
+        font-size: 0.9rem;
+    }
+
+    .scene-content {
+        padding: 1.5rem;
+    }
+
+    .finale-title {
+        font-size: 2rem;
+    }
+}
+
+/* ============================
+   SCROLL İPUCU (İsteğe bağlı)
+   ============================ */
+.scroll-hint {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    animation: bounce 2s infinite;
+    z-index: 200;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
