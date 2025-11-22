@@ -28,6 +28,218 @@ body {
     line-height: 1.6;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+/* ============================
+   HERO / LANDING SECTION
+   ============================ */
+#hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    padding-bottom: calc(2rem + 100px);
+    /* 100px ekstra boşluk */
+    background: var(--bg-lighter);
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 800px;
+    animation: fadeInUp 1s ease-out;
+    margin-bottom: 100px;
+    /* İçeriği yukarı taşı */
+}
+
+.hero-name {
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    letter-spacing: -2px;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    font-weight: 400;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 3px solid var(--text-primary);
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--text-primary);
+    color: var(--bg-lighter);
+}
+
+.btn-primary:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+    background: var(--text-primary);
+    color: var(--bg-lighter);
+    transform: translateY(-2px);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    animation: bounce 2s infinite;
+}
+
+.scroll-indicator span {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.scroll-arrow {
+    width: 24px;
+    height: 24px;
+    border-left: 3px solid var(--text-primary);
+    border-bottom: 3px solid var(--text-primary);
+    transform: rotate(-45deg);
+    margin: 0 auto;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+/* ============================
+   STICKY NAVBAR
+   ============================ */
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--text-primary);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+#navbar.hidden {
+    transform: translateY(-100%);
+}
+
+#navbar.visible {
+    transform: translateY(0);
+    animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.navbar-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-primary);
+    border: 2px solid var(--text-primary);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: var(--text-primary);
+    color: var(--bg-lighter);
+}
+
+
 /* ============================
    KARAKTER CONTAINER
    ============================ */
@@ -221,155 +433,249 @@ body {
     position: relative;
     min-height: 100vh;
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding: 0 8% 15vh 8%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 0 10% 20vh 10%;
     opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: opacity 0.6s ease;
+}
+
+/* Tek sahneler sol alttan, çift sahneler sağ alttan */
+.scene[data-scene="1"],
+.scene[data-scene="3"],
+.scene[data-scene="5"],
+.scene[data-scene="7"],
+.scene[data-scene="9"] {
+    align-items: flex-start;
+    text-align: start;
+}
+
+.scene[data-scene="2"],
+.scene[data-scene="4"],
+.scene[data-scene="6"],
+.scene[data-scene="8"],
+.scene[data-scene="10"] {
+    align-items: flex-end;
+    text-align: end;
 }
 
 .scene.active {
     opacity: 1;
-    transform: translateY(0);
 }
 
-/* Sahne İçeriği */
-.scene-content {
-    max-width: 700px;
-    background: var(--bg-lighter);
-    padding: 2.5rem;
-    border-radius: 16px;
-    border: 3px solid var(--text-primary);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden;
-}
-
-.scene-content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 6px;
-    height: 100%;
-    background: var(--accent-color);
-}
-
-/* Sahne Numarası */
-.scene-number {
-    font-size: 5rem;
-    font-weight: 900;
-    color: rgba(83, 83, 83, 0.08);
-    position: absolute;
-    top: -20px;
-    right: 20px;
-    line-height: 1;
-    user-select: none;
-}
-
-/* Sahne Başlığı */
+/* Sahne Başlığı - Hikaye stili */
 .scene-title {
-    font-size: 2.2rem;
+    font-size: 2.6rem;
     font-weight: 700;
+    font-style: italic;
     color: var(--text-primary);
-    margin-bottom: 1rem;
-}
-
-/* Sahne Açıklaması */
-.scene-description {
-    font-size: 1.05rem;
-    color: var(--text-secondary);
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-}
-
-/* Sahne İkonları */
-.scene-icon {
-    font-size: 3rem;
-    position: absolute;
-    bottom: 20px;
-    right: 30px;
-    opacity: 0.5;
-    transition: all 0.3s ease;
-}
-
-.scene:hover .scene-icon {
-    opacity: 1;
-    transform: scale(1.1) rotate(5deg);
-}
-
-/* Yıl Etiketi */
-.scene-year {
+    margin-bottom: 1.2rem;
+    text-align: center;
+    max-width: 800px;
+    font-family: Georgia, 'Times New Roman', serif;
+    position: relative;
     display: inline-block;
-    padding: 0.6rem 1.8rem;
-    background: var(--text-primary);
-    color: var(--bg-lighter);
-    font-weight: 700;
-    border-radius: 50px;
+}
+
+/* Sahne Açıklaması - Hikaye stili */
+.scene-description {
     font-size: 1.2rem;
-    border: 3px solid var(--text-primary);
+    color: var(--text-secondary);
+    line-height: 2;
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    position: relative;
+}
+
+.scene-icon {
+    position: relative;
+    top: -300px;
+    right: 0px;
+    font-size: 5rem;
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.scene-year {
+    position: relative;
+    top: -250px;
+    right: 0px;
+    font-size: 3.5rem;
+    font-weight: 900;
+    padding: 0;
+    color: var(--text-primary);
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 /* ============================
-   FİNAL SAHNESI
+   FİNAL SAHNESİ
    ============================ */
 .scene.final {
     min-height: 100vh;
+    max-height: 100vh;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    padding: 2rem 2%;
+    background: var(--bg-lighter);
+    z-index: 10;
+    opacity: 1 !important;
+    transform: none !important;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: row;
 }
 
-.finale-title {
-    font-size: 4rem;
+.finale-content {
+    width: 80%;
+    text-align: left;
+    position: relative;
+    z-index: 11;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.finale-name {
+    font-size: 2.2rem;
     font-weight: 900;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color), var(--success-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 1rem;
-    animation: pulse-glow 2s ease-in-out infinite;
+    color: var(--text-primary);
+    margin-bottom: 0.3rem;
+    letter-spacing: -1px;
 }
 
-.finale-text {
-    font-size: 1.5rem;
+.finale-subtitle {
+    font-size: 0.95rem;
     color: var(--text-secondary);
-    font-style: italic;
+    margin-bottom: 0.5rem;
 }
 
-@keyframes pulse-glow {
+.finale-story {
+    text-align: left;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
 
-    0%,
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+.finale-story h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-align: left;
+    color: var(--text-primary);
+    grid-column: 1 / -1;
+}
 
-    50% {
-        opacity: 0.8;
-        transform: scale(1.02);
-    }
+.story-item {
+    padding: 0.5rem 0.7rem;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 6px;
+    line-height: 1.4;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.story-item strong {
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 0.15rem;
+    font-size: 0.8rem;
+}
+
+.finale-buttons {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.finale-buttons .btn {
+    padding: 0.65rem 1.3rem;
+    font-size: 0.9rem;
+}
+
+/* Karakter kafası sağ %20'de */
+#finale-character {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    z-index: 12;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 2rem;
+}
+
+#finale-character .character-body {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(100%);
 }
 
 /* ============================
    RESPONSIVE TASARIM
    ============================ */
 @media (max-width: 1024px) {
+    .hero-name {
+        font-size: 3.5rem;
+    }
+
     .scene-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 
     .scene-description {
         font-size: 1rem;
     }
-
-    .scene-number {
-        font-size: 4rem;
-    }
 }
 
 @media (max-width: 768px) {
+    .hero-name {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .navbar-container {
+        padding: 0.8rem 1rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.1rem;
+    }
+
+    .nav-btn span {
+        display: none;
+    }
+
     #character-container {
         left: 3%;
     }
@@ -386,40 +692,50 @@ body {
 
     .character-head {
         width: 20px;
-        height: 20px;
+        height: 24px;
     }
 
     .character-torso {
-        width: 15px;
-        height: 25px;
-        top: 20px;
+        width: 18px;
+        height: 28px;
+        top: 24px;
     }
 
     .character-leg {
-        width: 6px;
-        height: 20px;
+        width: 7px;
+        height: 28px;
     }
 
     .scene {
-        padding: 2rem 5%;
-    }
-
-    .scene-content {
-        padding: 2rem;
+        padding: 0 5% 15vh 5%;
     }
 
     .scene-title {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 
     .scene-description {
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
 
-    .scene-number {
-        font-size: 3rem;
-        top: -10px;
-        right: 10px;
+    .scene-icon,
+    .scene-year {
+        font-size: 4rem;
+        top: 5%;
+        right: 3%;
+    }
+
+    .finale-name {
+        font-size: 2.5rem;
+    }
+
+    .finale-story {
+        padding: 0 1rem;
+    }
+
+    .story-item {
+        font-size: 0.9rem;
+        padding: 0.8rem;
     }
 
     .scene-icon {

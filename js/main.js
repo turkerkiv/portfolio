@@ -5,60 +5,185 @@
 gsap.registerPlugin(ScrollTrigger);
 
 // ============================
+// NAVBAR SCROLL ANİMASYONU
+// ============================
+
+const navbar = document.querySelector('#navbar');
+const hero = document.querySelector('#hero');
+
+// Hero section geçildiğinde navbar'ı göster
+ScrollTrigger.create({
+    trigger: hero,
+    start: 'bottom top',
+    onEnter: () => {
+        navbar.classList.remove('hidden');
+        navbar.classList.add('visible');
+    },
+    onLeaveBack: () => {
+        navbar.classList.add('hidden');
+        navbar.classList.remove('visible');
+    }
+});
+
+// CV indirme butonları için event listener
+document.querySelectorAll('#download-cv, #nav-download-cv, #finale-download-cv').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('CV indirme özelliği yakında eklenecek!');
+        // Buraya gerçek CV indirme linki eklenebilir:
+        // window.open('path/to/cv.pdf', '_blank');
+    });
+});
+
+// Smooth scroll için anchor linkleri
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && document.querySelector(href)) {
+            e.preventDefault();
+            document.querySelector(href).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// ============================
 // KARAKTER VE SCROLL SENKRONİZASYONU
 // ============================
 
 const character = document.querySelector('#character');
 const characterContainer = document.querySelector('#character-container');
-const scenes = document.querySelectorAll('.scene');
+const scenes = document.querySelectorAll('.scene:not(.final)');
+const finalSceneEl = document.querySelector('.scene.final');
 const storyContainer = document.querySelector('#story-container');
 
 // Scroll boyutunu hesapla
 const totalScroll = storyContainer.scrollHeight - window.innerHeight;
 
 // ============================
-// KARAKTER BÜYÜME VE HAREKET ANİMASYONU
+// KARAKTER PROGRESS BARDA KALSIN
 // ============================
 
 gsap.to(character, {
-    scale: 3, // Karakterin büyüme oranı (başlangıç 1x -> son 3x)
+    scale: 2.5,
     scrollTrigger: {
         trigger: storyContainer,
         start: 'top top',
-        end: 'bottom bottom',
-        scrub: 0.3, // Daha hızlı tepki için azaltıldı
+        end: () => `+=${storyContainer.scrollHeight - window.innerHeight - window.innerHeight}`, // Final sahneden önce bitir
+        scrub: 0.3,
         onUpdate: (self) => {
-            // Scroll ilerlemesini hesapla (0-1 arası)
             const progress = self.progress;
 
-            // Karakteri yatayda hareket ettir (soldan sağa)
-            const moveDistance = window.innerWidth * 0.7; // Ekranın %70'i kadar
+            // Karakteri progress bar üzerinde tut (yatayda hareket ettir)
+            const moveDistance = window.innerWidth * 0.7;
             const currentX = moveDistance * progress;
 
+            // Karakter her zaman progress bar üzerinde
             characterContainer.style.left = `calc(5% + ${currentX}px)`;
-
-            // Debug için (isteğe bağlı)
-            // console.log(`Progress: ${(progress * 100).toFixed(1)}%`);
+            characterContainer.style.top = '65%'; // Road-line ile aynı hizada
         }
     }
-});// ============================
+});
+
+// ============================
+// FİNAL SAHNESİ - KARAKTER AŞAĞI DÜŞSÜN
+// ============================
+
+ScrollTrigger.create({
+    trigger: finalSceneEl,
+    start: 'top 80%',
+    onEnter: () => {
+        // Karakteri aşağıya düşür ve gizle
+        gsap.to(characterContainer, {
+            y: window.innerHeight,
+            opacity: 0,
+            duration: 1,
+            ease: 'power2.in'
+        });
+
+        // Navbar'ı gizle
+        navbar.classList.add('hidden');
+        navbar.classList.remove('visible');
+    },
+    onLeaveBack: () => {
+        // Geri dönüldüğünde karakteri tekrar göster
+        gsap.to(characterContainer, {
+            y: 0,
+            opacity: 1,
+            duration: 0.5
+        });
+
+        // Navbar'ı tekrar göster
+        navbar.classList.remove('hidden');
+        navbar.classList.add('visible');
+    }
+});
+
+// ============================
+// FİNALE KARAKTER ANİMASYONU
+// ============================
+
+const finaleCharacter = document.getElementById('finale-character');
+
+if (finaleCharacter) {
+    console.log('Finale character found:', finaleCharacter);
+    const finaleCharacterBody = finaleCharacter.querySelector('.character-body');
+    console.log('Finale character body found:', finaleCharacterBody);
+
+    if (finaleCharacterBody) {
+        // Başlangıç durumunu ayarla
+        gsap.set(finaleCharacterBody, {
+            y: 200,
+            opacity: 0
+        });
+
+        gsap.to(finaleCharacterBody, {
+            y: 0,
+            opacity: 1,
+            duration: 1.5,
+            ease: 'elastic.out(1, 0.5)',
+            scrollTrigger: {
+                trigger: finalSceneEl,
+                start: 'top 60%',
+                toggleActions: 'play none none reverse',
+                onEnter: () => console.log('Finale character animation triggered')
+            }
+        });
+
+        // Hafif sallanma animasyonu
+        gsap.to(finaleCharacterBody, {
+            rotation: 3,
+            duration: 2,
+            ease: 'sine.inOut',
+            yoyo: true,
+            repeat: -1,
+            scrollTrigger: {
+                trigger: finalSceneEl,
+                start: 'top 60%',
+            }
+        });
+    } else {
+        console.error('Finale character body not found!');
+    }
+} else {
+    console.error('Finale character element not found!');
+}
+
+// ============================
 // SAHNE FADE-IN ANİMASYONLARI
 // ============================
 
 scenes.forEach((scene, index) => {
     gsap.fromTo(scene,
-        {
-            opacity: 0,
-            y: 50,
-        },
+        { opacity: 0 },
         {
             opacity: 1,
-            y: 0,
             scrollTrigger: {
                 trigger: scene,
-                start: 'top 85%', // Sahne ekranın %85'ine geldiğinde
-                end: 'top 60%',   // %60'a geldiğinde
-                scrub: 0.2, // Daha hızlı tepki
+                start: 'top 85%',
+                end: 'top 60%',
+                scrub: 0.2,
                 onEnter: () => scene.classList.add('active'),
                 onLeave: () => scene.classList.remove('active'),
                 onEnterBack: () => scene.classList.add('active'),
@@ -66,21 +191,9 @@ scenes.forEach((scene, index) => {
             }
         }
     );
+});
 
-    // Sahne içeriklerine hafif paralaks efekti
-    const sceneContent = scene.querySelector('.scene-content');
-    if (sceneContent) {
-        gsap.to(sceneContent, {
-            y: -30,
-            scrollTrigger: {
-                trigger: scene,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: 0.3 // Daha hızlı paralaks
-            }
-        });
-    }
-});// ============================
+// ============================
 // YOL ÇİZGİSİ PROGRESS ANİMASYONU
 // ============================
 
@@ -100,28 +213,49 @@ gsap.to(roadLine, {
 });
 
 // ============================
-// KARAKTER YÜRÜME ANİMASYONU (SCROLL BASED)
+// KARAKTER YÜRÜME ANİMASYONU (SADECE SCROLL'DA)
 // ============================
 
 let lastScrollY = window.scrollY;
 let isWalking = false;
 let walkTimeout;
 
+// Bacakları başlangıçta durdur
+const leftLeg = document.querySelector('.character-leg.left');
+const rightLeg = document.querySelector('.character-leg.right');
+
+function stopWalking() {
+    if (leftLeg && rightLeg) {
+        leftLeg.style.animationPlayState = 'paused';
+        rightLeg.style.animationPlayState = 'paused';
+    }
+    isWalking = false;
+}
+
+function startWalking() {
+    if (leftLeg && rightLeg) {
+        leftLeg.style.animationPlayState = 'running';
+        rightLeg.style.animationPlayState = 'running';
+    }
+    isWalking = true;
+}
+
+// Başlangıçta durdur
+stopWalking();
+
 window.addEventListener('scroll', () => {
     const currentScrollY = window.scrollY;
 
     // Scroll hareket ediyorsa yürüme animasyonunu aktif et
-    if (Math.abs(currentScrollY - lastScrollY) > 5) {
+    if (Math.abs(currentScrollY - lastScrollY) > 3) {
         if (!isWalking) {
-            character.style.animation = 'walking 0.6s infinite';
-            isWalking = true;
+            startWalking();
         }
 
         // Scroll durduğunda animasyonu durdur
         clearTimeout(walkTimeout);
         walkTimeout = setTimeout(() => {
-            character.style.animation = 'none';
-            isWalking = false;
+            stopWalking();
         }, 150);
     }
 
@@ -132,28 +266,71 @@ window.addEventListener('scroll', () => {
 // FİNAL SAHNESI ÖZEL ANİMASYON
 // ============================
 
-const finalScene = document.querySelector('.scene.final');
-const finaleTitle = document.querySelector('.finale-title');
+const finaleName = document.querySelector('.finale-name');
+const finaleSubtitle = document.querySelector('.finale-subtitle');
 
-if (finalScene && finaleTitle) {
-    gsap.fromTo(finaleTitle,
+if (finalSceneEl && finaleName) {
+    // Final sahneyi her zaman görünür yap
+    gsap.set(finalSceneEl, { opacity: 1 });
+
+    gsap.fromTo(finaleName,
         {
-            scale: 0.5,
+            scale: 0.9,
             opacity: 0,
-            rotation: -10
+            y: 20
         },
         {
             scale: 1,
             opacity: 1,
-            rotation: 0,
+            y: 0,
             scrollTrigger: {
-                trigger: finalScene,
-                start: 'top 70%',
-                end: 'center center',
-                scrub: 0.3 // Daha hızlı tepki
+                trigger: finalSceneEl,
+                start: 'top 80%',
+                end: 'top 50%',
+                scrub: 0.3
             }
         }
     );
+
+    if (finaleSubtitle) {
+        gsap.fromTo(finaleSubtitle,
+            {
+                opacity: 0,
+                y: 15
+            },
+            {
+                opacity: 1,
+                y: 0,
+                scrollTrigger: {
+                    trigger: finalSceneEl,
+                    start: 'top 75%',
+                    end: 'top 50%',
+                    scrub: 0.3
+                }
+            }
+        );
+    }
+
+    // Story itemları sırayla animasyon
+    const storyItems = document.querySelectorAll('.story-item');
+    storyItems.forEach((item, index) => {
+        gsap.fromTo(item,
+            {
+                opacity: 0,
+                x: index % 2 === 0 ? -30 : 30
+            },
+            {
+                opacity: 1,
+                x: 0,
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 85%',
+                    end: 'top 65%',
+                    scrub: 0.2
+                }
+            }
+        );
+    });
 }
 
 // ============================

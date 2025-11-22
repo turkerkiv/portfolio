@@ -9,6 +9,59 @@
 </head>
 
 <body>
+    <!-- HERO / LANDING SECTION -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1 class="hero-name">Türker Kıvılcım</h1>
+            <p class="hero-subtitle">Backend Odaklı Fullstack Developer & AI Enthusiast</p>
+
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-secondary" id="download-cv">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                    <span>CV İndir</span>
+                </a>
+                <a href="https://github.com/turkerkiv" target="_blank" class="btn btn-secondary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                    </svg>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Hikayemi keşfetmek için aşağı kaydırın</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- STICKY NAVBAR (Hero içeriğinden dönüşecek) -->
+    <nav id="navbar" class="hidden">
+        <div class="navbar-container">
+            <div class="navbar-brand">Türker Kıvılcım</div>
+            <div class="navbar-actions">
+                <a href="#" class="nav-btn" id="nav-download-cv">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                    <span>CV</span>
+                </a>
+                <a href="https://github.com/turkerkiv" target="_blank" class="nav-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                    </svg>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
     <!-- Karakter Container - Sayfada fixed kalacak -->
     <div id="character-container">
         <div id="character">
@@ -25,146 +78,211 @@
     <div id="road-line"></div>
 
     <!-- Hikaye Sahneleri -->
-    <div id="story-container">
+    <div id="story-container" id="about">
 
         <!-- Sahne 1: Başlangıç -->
         <section class="scene" data-scene="1">
-            <div class="scene-content">
-                <div class="scene-number">01</div>
-                <h2 class="scene-title">İlk Adımlar</h2>
-                <p class="scene-description">
-                    Daha önceleri birkaç denemem olmuş olsa da hep bıraktım.
-                    Ama en sonunda 2022 yılında yazılım geliştirme serüvenine başladım.
-                </p>
-                <div class="scene-year">2022</div>
-            </div>
+            <h2 class="scene-title">İlk Adımlar</h2>
+            <p class="scene-description">
+                Daha önceleri birkaç denemem olmuş olsa da hep bıraktım.
+                Ama en sonunda 2022 yılında yazılım geliştirme serüvenine başladım.
+            </p>
+            <div class="scene-year">2022</div>
         </section>
 
         <!-- Sahne 2: C# Temelleri -->
         <section class="scene" data-scene="2">
-            <div class="scene-content">
-                <div class="scene-number">02</div>
-                <h2 class="scene-title">Masaüstü ve Konsol</h2>
-                <p class="scene-description">
-                    Murat Yücedağ'ın C# kurslarından sonra Mosh Hamedani'nin kurslarına devam ettim.
-                    Masaüstü ve konsol uygulamaları geliştirdim.
-                </p>
-                <div class="scene-icon">🖥️</div>
-            </div>
+            <h2 class="scene-title">Masaüstü ve Konsol</h2>
+            <p class="scene-description">
+                Murat Yücedağ'ın C# kurslarından sonra Mosh Hamedani'nin kurslarına devam ettim.
+                Masaüstü ve konsol uygulamaları geliştirdim.
+            </p>
+            <div class="scene-icon">🖥️</div>
         </section>
 
         <!-- Sahne 3: Oyun Geliştirme -->
         <section class="scene" data-scene="3">
-            <div class="scene-content">
-                <div class="scene-number">03</div>
-                <h2 class="scene-title">Game Jam Yolu</h2>
-                <p class="scene-description">
-                    Bir arkadaşımdan ilham alarak oyun geliştirmeye merak saldım ve GameDev.tv kurslarıyla öğrendim.
-                    1.5 yıl içinde Game Jam'lere katılarak kendimi geliştirdim.
-                </p>
-                <div class="scene-icon">🎮</div>
-            </div>
+            <h2 class="scene-title">Game Jam Yolu</h2>
+            <p class="scene-description">
+                Bir arkadaşımdan ilham alarak oyun geliştirmeye merak saldım ve GameDev.tv kurslarıyla öğrendim.
+                1.5 yıl içinde Game Jam'lere katılarak kendimi geliştirdim.
+            </p>
+            <div class="scene-icon">🎮</div>
         </section>
 
         <!-- Sahne 4: İlk Profesyonel Deneyim -->
         <section class="scene" data-scene="4">
-            <div class="scene-content">
-                <div class="scene-number">04</div>
-                <h2 class="scene-title">Upwork İşleri</h2>
-                <p class="scene-description">
-                    Asıl profesyonel deneyim olarak 4 aylık bir süreçte 2 adet Upwork işi aldım
-                    ve başarıyla tamamladım.
-                </p>
-                <div class="scene-icon">💼</div>
-            </div>
+            <h2 class="scene-title">Upwork İşleri</h2>
+            <p class="scene-description">
+                Asıl profesyonel deneyim olarak 4 aylık bir süreçte 2 adet Upwork işi aldım
+                ve başarıyla tamamladım.
+            </p>
+            <div class="scene-icon">💼</div>
         </section>
 
         <!-- Sahne 5: Üniversiteye Giriş -->
         <section class="scene" data-scene="5">
-            <div class="scene-content">
-                <div class="scene-number">05</div>
-                <h2 class="scene-title">Yeni Bir Kapı</h2>
-                <p class="scene-description">
-                    2023 Eylül ayında Erciyes Üniversitesi Bilgisayar Mühendisliğini kazandım.
-                </p>
-                <div class="scene-year">2023</div>
-            </div>
+            <h2 class="scene-title">Yeni Bir Kapı</h2>
+            <p class="scene-description">
+                2023 Eylül ayında Erciyes Üniversitesi Bilgisayar Mühendisliğini kazandım.
+            </p>
+            <div class="scene-year">2023</div>
         </section>
 
         <!-- Sahne 6: Akademik Başarı -->
         <section class="scene" data-scene="6">
-            <div class="scene-content">
-                <div class="scene-number">06</div>
-                <h2 class="scene-title">TeknoJam24 Birinciliği</h2>
-                <p class="scene-description">
-                    İlk yılımda TeknoJam24 Game Jam yarışmasında 1. oldum ve bilgisayar bilimlerine
-                    genel bir merakla alanlarımı genişletmeye başladım.
-                </p>
-                <div class="scene-icon">🏆</div>
-            </div>
+            <h2 class="scene-title">TeknoJam24 Birinciliği</h2>
+            <p class="scene-description">
+                İlk yılımda TeknoJam24 Game Jam yarışmasında 1. oldum ve bilgisayar bilimlerine
+                genel bir merakla alanlarımı genişletmeye başladım.
+            </p>
+            <div class="scene-icon">🏆</div>
         </section>
 
         <!-- Sahne 7: Kulüp ve Projeler -->
         <section class="scene" data-scene="7">
-            <div class="scene-content">
-                <div class="scene-number">07</div>
-                <h2 class="scene-title">Yapay Zeka Kulübü & Frontend</h2>
-                <p class="scene-description">
-                    2. senemde Yapay Zeka Kulübü yönetim kurulundaydım.
-                    Hocalarımın projesinde frontend developer olarak çalışma fırsatı buldum.
-                </p>
-                <div class="scene-icon">🤖</div>
-            </div>
+            <h2 class="scene-title">Yapay Zeka Kulübü & Frontend</h2>
+            <p class="scene-description">
+                2. senemde Yapay Zeka Kulübü yönetim kurulundaydım.
+                Hocalarımın projesinde frontend developer olarak çalışma fırsatı buldum.
+            </p>
+            <div class="scene-icon">🤖</div>
         </section>
 
         <!-- Sahne 8: Kısmi Zamanlı İş ve Staj -->
         <section class="scene" data-scene="8">
-            <div class="scene-content">
-                <div class="scene-number">08</div>
-                <h2 class="scene-title">Yapay Zeka ve Ağ Mimarileri</h2>
-                <p class="scene-description">
-                    Okulun Bilgi İşlem Daire Başkanlığında yapay zeka çalışmaları yaptım.
-                    Yaz stajımı ağ mimarileri üzerine tamamladım.
-                </p>
-                <div class="scene-icon">🌐</div>
-            </div>
+            <h2 class="scene-title">Yapay Zeka ve Ağ Mimarileri</h2>
+            <p class="scene-description">
+                Okulun Bilgi İşlem Daire Başkanlığında yapay zeka çalışmaları yaptım.
+                Yaz stajımı ağ mimarileri üzerine tamamladım.
+            </p>
+            <div class="scene-icon">🌐</div>
         </section>
 
         <!-- Sahne 9: DevFest ve Liderlik -->
         <section class="scene" data-scene="9">
-            <div class="scene-content">
-                <div class="scene-number">09</div>
-                <h2 class="scene-title">Proje Yönetimi Sorumlusu</h2>
-                <p class="scene-description">
-                    3. yılımda YazTek Kulübü yönetim kurulundaydım ve Google işbirliği ile DevFest düzenledik.
-                    TÜBİTAK 2025 projelerine mentörlük yaptım.
-                </p>
-                <div class="scene-icon">🎯</div>
-            </div>
+            <h2 class="scene-title">Proje Yönetimi Sorumlusu</h2>
+            <p class="scene-description">
+                3. yılımda YazTek Kulübü yönetim kurulundaydım ve Google işbirliği ile DevFest düzenlediğiz.
+                TÜBİTAK 2025 projelerine mentörlük yaptım.
+            </p>
+            <div class="scene-icon">🎯</div>
         </section>
 
         <!-- Sahne 10: Güncel Profil -->
         <section class="scene" data-scene="10">
-            <div class="scene-content">
-                <div class="scene-number">10</div>
-                <h2 class="scene-title">Fullstack ve Görüntü İşleme</h2>
-                <p class="scene-description">
-                    Şu aralar 3. sınıfımdayım ve okulumun bilgi işleminde kısmi zamanlı çalışıyorum.
-                    Kendimi backend odaklı fullstack developer olarak tanımlıyorum.
-                    AI alanında da özellikle görüntü işleme odaklı modellerde kendimi geliştiriyorum.
-                </p>
-                <div class="scene-year">2025</div>
-            </div>
+            <h2 class="scene-title">Fullstack ve Görüntü İşleme</h2>
+            <p class="scene-description">
+                Şu aralar 3. sınıfımdayım ve okulumun bilgi işleminde kısmi zamanlı çalışıyorum.
+                Kendimi backend odaklı fullstack developer olarak tanımlıyorum.
+                AI alanında da özellikle görüntü işleme odaklı modellerde kendimi geliştiriyorum.
+            </p>
+            <div class="scene-year">2025</div>
         </section>
 
-        <!-- Final Scene - Boşluk -->
+        <!-- Final Scene - Hikaye Özeti -->
         <section class="scene final" data-scene="finale">
-            <div class="scene-content">
-                <h2 class="finale-title">Yolculuk Devam Ediyor...</h2>
-                <p class="finale-text">Ve bu, sadece başlangıç.</p>
+            <div class="finale-content">
+                <h1 class="finale-name">Türker Kıvılcım</h1>
+                <p class="finale-subtitle">Backend Odaklı Fullstack Developer & AI Enthusiast</p>
+
+                <div class="finale-story">
+                    <h3>Hikayem</h3>
+
+                    <div class="story-item">
+                        <strong>2022 - İlk Adımlar:</strong>
+                        Daha önceleri birkaç denemem olmuş olsa da hep bıraktım. Ama en sonunda 2022 yılında yazılım
+                        geliştirme serüvenine başladım.
+                    </div>
+
+                    <div class="story-item">
+                        <strong>Masaüstü ve Konsol:</strong>
+                        Murat Yücedağ'ın C# kurslarından sonra Mosh Hamedani'nin kurslarına devam ettim. Masaüstü ve
+                        konsol uygulamaları geliştirdim.
+                    </div>
+
+                    <div class="story-item">
+                        <strong>Game Jam Yolu:</strong>
+                        Bir arkadaşımdan ilham alarak oyun geliştirmeye merak saldım ve GameDev.tv kurslarıyla öğrendim.
+                        1.5 yıl içinde Game Jam'lere katılarak kendimi geliştirdim.
+                    </div>
+
+                    <div class="story-item">
+                        <strong>Upwork İşleri:</strong>
+                        Asıl profesyonel deneyim olarak 4 aylık bir süreçte 2 adet Upwork işi aldım ve başarıyla
+                        tamamladım.
+                    </div>
+
+                    <div class="story-item">
+                        <strong>2023 - Yeni Bir Kapı:</strong>
+                        2023 Eylül ayında Erciyes Üniversitesi Bilgisayar Mühendisliğini kazandım.
+                    </div>
+
+                    <div class="story-item">
+                        <strong>TeknoJam24 Birinciliği:</strong>
+                        İlk yılımda TeknoJam24 Game Jam yarışmasında 1. oldum ve bilgisayar bilimlerine genel bir
+                        merakla alanlarımı genişletmeye başladım.
+                    </div>
+
+                    <div class="story-item">
+                        <strong>Yapay Zeka Kulübü & Frontend:</strong>
+                        2. senemde Yapay Zeka Kulübü yönetim kurulundaydım. Hocalarımın projesinde frontend developer
+                        olarak çalışma fırsatı buldum.
+                    </div>
+
+                    <div class="story-item">
+                        <strong>Yapay Zeka ve Ağ Mimarileri:</strong>
+                        Okulun Bilgi İşlem Daire Başkanlığında yapay zeka çalışmaları yaptım. Yaz stajımı ağ mimarileri
+                        üzerine tamamladım.
+                    </div>
+
+                    <div class="story-item">
+                        <strong>Proje Yönetimi Sorumlusu:</strong>
+                        3. yılımda YazTek Kulübü yönetim kurulundaydım ve Google işbirliği ile DevFest düzenledik.
+                        TÜBİTAK 2025 projelerine mentörlük yaptım.
+                    </div>
+
+                    <div class="story-item">
+                        <strong>2025 - Fullstack ve Görüntü İşleme:</strong>
+                        Şu aralar 3. sınıfımdayım ve okulumun bilgi işleminde kısmi zamanlı çalışıyorum. Kendimi backend
+                        odaklı fullstack developer olarak tanımlıyorum. AI alanında da özellikle görüntü işleme odaklı
+                        modellerde kendimi geliştiriyorum.
+                    </div>
+                </div>
+
+                <div class="finale-buttons">
+                    <a href="#" class="btn btn-secondary" id="finale-download-cv">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke-width="2"
+                                stroke-linecap="round" />
+                        </svg>
+                        <span>CV İndir</span>
+                    </a>
+                    <a href="https://github.com/turkerkiv" target="_blank" class="btn btn-secondary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                        </svg>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#hero" class="btn btn-primary">
+                        <span>Başa Dön</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 19V5M5 12l7-7 7 7" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </a>
+                </div>
             </div>
         </section>
 
+    </div>
+
+    <!-- Finale Karakter (Sağ alttan çıkacak) -->
+    <div id="finale-character">
+        <div class="character-body">
+            <div class="character-head"></div>
+            <div class="character-torso"></div>
+        </div>
     </div>
 
     <!-- GSAP ve ScrollTrigger -->
