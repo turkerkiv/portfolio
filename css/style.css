@@ -44,7 +44,6 @@ html {
     justify-content: center;
     padding: 2rem;
     padding-bottom: calc(2rem + 100px);
-    /* 100px ekstra boşluk */
     background: var(--bg-lighter);
 }
 
@@ -53,7 +52,6 @@ html {
     max-width: 800px;
     animation: fadeInUp 1s ease-out;
     margin-bottom: 100px;
-    /* İçeriği yukarı taşı */
 }
 
 .hero-name {
@@ -239,9 +237,8 @@ html {
     color: var(--bg-lighter);
 }
 
-
 /* ============================
-   KARAKTER CONTAINER
+   KARAKTER CONTAINER - GELİŞTİRİLMİŞ
    ============================ */
 #character-container {
     position: fixed;
@@ -254,127 +251,143 @@ html {
 
 #character {
     position: relative;
-    width: 60px;
-    height: 80px;
+    width: 80px;
+    height: 100px;
     transition: transform 0.3s ease;
 }
 
-/* Karakter Gövdesi */
 .character-body {
     position: relative;
     width: 100%;
     height: 100%;
 }
 
-/* Kafa - İnsan benzeri */
+/* Kafa - Daha detaylı */
 .character-head {
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 28px;
-    height: 32px;
+    width: 35px;
+    height: 40px;
     background: var(--character-color);
-    border-radius: 50% 50% 45% 45%;
+    border-radius: 50% 50% 48% 48%;
     border: 3px solid var(--text-primary);
 }
 
-/* Kafa detayları (göz) */
+/* Göz */
 .character-head::before {
     content: '';
     position: absolute;
-    top: 12px;
-    right: 8px;
-    width: 5px;
-    height: 5px;
+    top: 14px;
+    right: 10px;
+    width: 6px;
+    height: 6px;
     background: var(--text-primary);
     border-radius: 50%;
 }
 
-/* Gövde - İnsan vücudu benzeri */
-.character-torso {
+/* Ağız */
+.character-head::after {
+    content: '';
     position: absolute;
-    top: 32px;
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 24px;
-    height: 35px;
+    width: 12px;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 0 0 10px 10px;
+}
+
+/* Gövde - Daha uzun */
+.character-torso {
+    position: absolute;
+    top: 38px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 40px;
     background: var(--character-color);
-    border-radius: 8px;
+    border-radius: 10px 10px 5px 5px;
     border: 3px solid var(--text-primary);
 }
 
-/* Kollar */
-.character-torso::before,
-.character-torso::after {
-    content: '';
+/* Kollar - İyileştirilmiş */
+.character-arm {
     position: absolute;
-    width: 6px;
-    height: 25px;
+    width: 7px;
+    height: 30px;
     background: var(--character-color);
     border-radius: 3px;
     border: 2px solid var(--text-primary);
-    top: 2px;
+    top: 40px;
+    transform-origin: top center;
 }
 
-.character-torso::before {
-    left: -8px;
-    animation: arm-swing-left 0.6s infinite alternate;
+.character-arm.left {
+    left: 10px;
 }
 
-.character-torso::after {
-    right: -8px;
-    animation: arm-swing-right 0.6s infinite alternate;
+.character-arm.right {
+    right: 10px;
 }
 
-/* Bacaklar - Daha uzun ve insani */
+/* Bacaklar - Daha uzun ve gerçekçi */
 .character-leg {
     position: absolute;
     bottom: 0;
-    width: 9px;
-    height: 35px;
+    width: 10px;
+    height: 42px;
     background: var(--character-color);
-    border-radius: 4px;
+    border-radius: 5px 5px 2px 2px;
     border: 3px solid var(--text-primary);
+    transform-origin: top center;
 }
 
-/* Ayaklar */
+/* Ayaklar - Daha belirgin */
 .character-leg::after {
     content: '';
     position: absolute;
-    bottom: -3px;
-    left: -2px;
-    width: 14px;
-    height: 6px;
+    bottom: -4px;
+    left: -3px;
+    width: 16px;
+    height: 8px;
     background: var(--character-color);
-    border-radius: 0 3px 3px 0;
+    border-radius: 0 4px 4px 0;
     border: 2px solid var(--text-primary);
 }
 
 .character-leg.left {
-    left: 15px;
-    animation: walk-left 0.6s infinite alternate;
+    left: 17px;
 }
 
 .character-leg.right {
-    right: 15px;
-    animation: walk-right 0.6s infinite alternate;
+    right: 17px;
 }
 
-/* Yürüme Animasyonu - Bacaklar */
+/* Yürüme Animasyonu - Daha doğal */
 @keyframes walk-left {
     0% {
-        transform: rotate(0deg);
+        transform: rotate(-15deg);
+    }
+
+    50% {
+        transform: rotate(25deg);
     }
 
     100% {
-        transform: rotate(-25deg);
+        transform: rotate(-15deg);
     }
 }
 
 @keyframes walk-right {
     0% {
-        transform: rotate(0deg);
+        transform: rotate(25deg);
+    }
+
+    50% {
+        transform: rotate(-15deg);
     }
 
     100% {
@@ -382,24 +395,31 @@ html {
     }
 }
 
-/* Kol Sallama Animasyonu */
 @keyframes arm-swing-left {
     0% {
-        transform: rotate(30deg);
+        transform: rotate(25deg);
+    }
+
+    50% {
+        transform: rotate(-15deg);
     }
 
     100% {
-        transform: rotate(-10deg);
+        transform: rotate(25deg);
     }
 }
 
 @keyframes arm-swing-right {
     0% {
-        transform: rotate(-30deg);
+        transform: rotate(-25deg);
+    }
+
+    50% {
+        transform: rotate(15deg);
     }
 
     100% {
-        transform: rotate(10deg);
+        transform: rotate(-25deg);
     }
 }
 
@@ -411,10 +431,73 @@ html {
     left: 5%;
     top: 65%;
     width: 90%;
-    height: 3px;
+    height: 4px;
     background: var(--road-color);
     transform: translateY(-50%);
     z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Checkpoint noktaları */
+.checkpoint {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--accent-color);
+    border: 4px solid var(--text-primary);
+    border-radius: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11;
+    box-shadow: 0 0 15px rgba(255, 107, 53, 0.5);
+    animation: checkpoint-pulse 2s infinite;
+}
+
+/* Checkpoint başlık ve icon/year */
+.checkpoint-label {
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-15deg);
+    white-space: nowrap;
+    pointer-events: none;
+    text-align: center;
+}
+
+.checkpoint-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.3rem;
+    font-family: Georgia, 'Times New Roman', serif;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9);
+}
+
+.checkpoint-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.2rem;
+    filter: drop-shadow(2px 2px 3px rgba(255, 255, 255, 0.8));
+}
+
+.checkpoint-year {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--accent-color);
+    display: block;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9);
+}
+
+@keyframes checkpoint-pulse {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
 }
 
 /* ============================
@@ -427,170 +510,138 @@ html {
 }
 
 /* ============================
-   SAHNE BÖLÜMÜ
+   SAHNE BÖLÜMÜ - YENİDEN TASARLANDI
    ============================ */
 .scene {
     position: relative;
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-end;
-    padding: 0 10% 20vh 10%;
+    align-items: center;
+    justify-content: center;
+    padding: 5vh 10%;
     opacity: 0;
     transition: opacity 0.6s ease;
-}
-
-/* Tek sahneler sol alttan, çift sahneler sağ alttan */
-.scene[data-scene="1"],
-.scene[data-scene="3"],
-.scene[data-scene="5"],
-.scene[data-scene="7"],
-.scene[data-scene="9"] {
-    align-items: flex-start;
-    text-align: start;
-}
-
-.scene[data-scene="2"],
-.scene[data-scene="4"],
-.scene[data-scene="6"],
-.scene[data-scene="8"],
-.scene[data-scene="10"] {
-    align-items: flex-end;
-    text-align: end;
 }
 
 .scene.active {
     opacity: 1;
 }
 
-/* Sahne Başlığı - Hikaye stili */
-.scene-title {
-    font-size: 2.6rem;
-    font-weight: 700;
-    font-style: italic;
-    color: var(--text-primary);
-    margin-bottom: 1.2rem;
-    text-align: center;
-    max-width: 800px;
-    font-family: Georgia, 'Times New Roman', serif;
+/* Sahne içeriği - Checkpoint etrafında */
+.scene-content {
     position: relative;
-    display: inline-block;
+    max-width: 600px;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    border: 3px solid var(--text-primary);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
-/* Sahne Açıklaması - Hikaye stili */
+/* Sol tarafta olan sahneler */
+.scene[data-scene="1"] .scene-content,
+.scene[data-scene="3"] .scene-content,
+.scene[data-scene="5"] .scene-content,
+.scene[data-scene="7"] .scene-content,
+.scene[data-scene="9"] .scene-content {
+    margin-right: auto;
+    margin-left: 10%;
+}
+
+/* Sağ tarafta olan sahneler */
+.scene[data-scene="2"] .scene-content,
+.scene[data-scene="4"] .scene-content,
+.scene[data-scene="6"] .scene-content,
+.scene[data-scene="8"] .scene-content,
+.scene[data-scene="10"] .scene-content {
+    margin-left: auto;
+    margin-right: 10%;
+}
+
 .scene-description {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--text-secondary);
-    line-height: 2;
-    margin-bottom: 1.5rem;
-    max-width: 700px;
+    line-height: 1.8;
     font-family: Georgia, 'Times New Roman', serif;
     font-style: italic;
-    position: relative;
-}
-
-.scene-icon {
-    position: relative;
-    top: -300px;
-    right: 0px;
-    font-size: 5rem;
-    opacity: 0.12;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.scene-year {
-    position: relative;
-    top: -250px;
-    right: 0px;
-    font-size: 3.5rem;
-    font-weight: 900;
-    padding: 0;
-    color: var(--text-primary);
-    opacity: 0.1;
-    pointer-events: none;
-    z-index: 0;
-    font-family: 'Segoe UI', sans-serif;
 }
 
 /* ============================
-   FİNAL SAHNESİ
+   FİNAL SAHNESİ - İYİLEŞTİRİLMİŞ
    ============================ */
 .scene.final {
     min-height: 100vh;
     max-height: 100vh;
     justify-content: center;
     align-items: center;
-    padding: 2rem 2%;
+    padding: 3rem 5%;
     background: var(--bg-lighter);
-    z-index: 10;
     opacity: 1 !important;
-    transform: none !important;
     overflow: hidden;
-    position: relative;
-    display: flex;
-    flex-direction: row;
 }
 
 .finale-content {
-    width: 80%;
+    width: 60%;
+    max-width: 900px;
+    margin: 0 auto;
     text-align: left;
     position: relative;
     z-index: 11;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding: 2rem 3rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
 }
 
 .finale-name {
-    font-size: 2.2rem;
+    font-size: 3rem;
     font-weight: 900;
     color: var(--text-primary);
-    margin-bottom: 0.3rem;
-    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+    letter-spacing: -2px;
 }
 
 .finale-subtitle {
-    font-size: 0.95rem;
+    font-size: 1.2rem;
     color: var(--text-secondary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .finale-story {
-    text-align: left;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0.8rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    max-height: 55vh;
+    overflow-y: auto;
 }
 
 .finale-story h3 {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
-    text-align: left;
+    margin-bottom: 0.8rem;
     color: var(--text-primary);
     grid-column: 1 / -1;
 }
 
 .story-item {
-    padding: 0.5rem 0.7rem;
+    padding: 0.8rem;
     background: rgba(0, 0, 0, 0.02);
-    border-radius: 6px;
-    line-height: 1.4;
-    font-size: 0.75rem;
+    border-radius: 8px;
+    border: 2px solid rgba(0, 0, 0, 0.05);
+    line-height: 1.5;
+    font-size: 0.85rem;
     color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.story-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-color: var(--accent-color);
 }
 
 .story-item strong {
     color: var(--text-primary);
     display: block;
-    margin-bottom: 0.15rem;
-    font-size: 0.8rem;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
 }
 
 .finale-buttons {
@@ -600,31 +651,81 @@ html {
     flex-wrap: wrap;
 }
 
-.finale-buttons .btn {
-    padding: 0.65rem 1.3rem;
-    font-size: 0.9rem;
-}
-
-/* Karakter kafası sağ %20'de */
+/* Karakter finale'de alttan çıkıyor - ARKA PLAN GİBİ */
 #finale-character {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 20%;
-    height: 100%;
-    z-index: 12;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 2rem;
+    position: fixed;
+    bottom: -100px;
+    right: 5%;
+    width: 400px;
+    height: 500px;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.15;
 }
 
 #finale-character .character-body {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     position: relative;
-    opacity: 0;
-    transform: translateY(100%);
+}
+
+#finale-character .character-head {
+    width: 150px;
+    height: 180px;
+}
+
+#finale-character .character-head::before {
+    width: 15px;
+    height: 15px;
+    top: 35px;
+    right: 25px;
+}
+
+#finale-character .character-head::after {
+    width: 30px;
+    height: 5px;
+    bottom: 25px;
+}
+
+#finale-character .character-torso {
+    top: 175px;
+    width: 130px;
+    height: 180px;
+}
+
+#finale-character .character-arm {
+    width: 30px;
+    height: 140px;
+    top: 180px;
+}
+
+#finale-character .character-arm.left {
+    left: 45px;
+}
+
+#finale-character .character-arm.right {
+    right: 45px;
+}
+
+#finale-character .character-leg {
+    width: 45px;
+    height: 190px;
+    bottom: -50px;
+}
+
+#finale-character .character-leg::after {
+    width: 40px;
+    height: 20px;
+    bottom: -10px;
+    left: -8px;
+}
+
+#finale-character .character-leg.left {
+    left: 75px;
+}
+
+#finale-character .character-leg.right {
+    right: 75px;
 }
 
 /* ============================
@@ -635,37 +736,18 @@ html {
         font-size: 3.5rem;
     }
 
-    .scene-title {
-        font-size: 2.2rem;
+    .scene-content {
+        padding: 2rem;
     }
 
-    .scene-description {
-        font-size: 1rem;
+    .scene-title {
+        font-size: 1.8rem;
     }
 }
 
 @media (max-width: 768px) {
     .hero-name {
         font-size: 2.5rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1.1rem;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-        width: 100%;
-        max-width: 300px;
-    }
-
-    .btn {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .navbar-container {
-        padding: 0.8rem 1rem;
     }
 
     .navbar-brand {
@@ -676,53 +758,19 @@ html {
         display: none;
     }
 
-    #character-container {
-        left: 3%;
-    }
-
-    #road-line {
-        left: 3%;
-        width: 94%;
-    }
-
     #character {
-        width: 45px;
-        height: 60px;
+        width: 60px;
+        height: 80px;
     }
 
-    .character-head {
-        width: 20px;
-        height: 24px;
+    .scene-content {
+        padding: 1.5rem;
+        max-width: 90%;
     }
 
-    .character-torso {
-        width: 18px;
-        height: 28px;
-        top: 24px;
-    }
-
-    .character-leg {
-        width: 7px;
-        height: 28px;
-    }
-
-    .scene {
-        padding: 0 5% 15vh 5%;
-    }
-
-    .scene-title {
-        font-size: 2rem;
-    }
-
-    .scene-description {
-        font-size: 1rem;
-    }
-
-    .scene-icon,
-    .scene-year {
-        font-size: 4rem;
-        top: 5%;
-        right: 3%;
+    .scene[data-scene] .scene-content {
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .finale-name {
@@ -730,49 +778,36 @@ html {
     }
 
     .finale-story {
-        padding: 0 1rem;
+        grid-template-columns: 1fr;
     }
 
-    .story-item {
-        font-size: 0.9rem;
-        padding: 0.8rem;
-    }
-
-    .scene-icon {
-        font-size: 2rem;
-        bottom: 15px;
-        right: 15px;
-    }
-
-    .finale-title {
-        font-size: 2.5rem;
-    }
-
-    .finale-text {
-        font-size: 1.1rem;
+    #finale-character {
+        width: 100px;
+        height: 150px;
+        right: 5%;
     }
 }
 
 @media (max-width: 480px) {
     .scene-title {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
 
     .scene-description {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
 
-    .scene-content {
-        padding: 1.5rem;
-    }
-
-    .finale-title {
+    .finale-name {
         font-size: 2rem;
+    }
+
+    .story-item {
+        font-size: 0.9rem;
     }
 }
 
 /* ============================
-   SCROLL İPUCU (İsteğe bağlı)
+   SCROLL İPUCU
    ============================ */
 .scroll-hint {
     position: fixed;
@@ -784,16 +819,4 @@ html {
     font-weight: 600;
     animation: bounce 2s infinite;
     z-index: 200;
-}
-
-@keyframes bounce {
-
-    0%,
-    100% {
-        transform: translateX(-50%) translateY(0);
-    }
-
-    50% {
-        transform: translateX(-50%) translateY(-10px);
-    }
 }
