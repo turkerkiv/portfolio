@@ -102,9 +102,14 @@ const characterContainer = document.querySelector('#character-container');
 const storyContainer = document.querySelector('#story-container');
 const finalSceneEl = document.querySelector('.scene.final');
 
-// Karakteri checkpoint'ler boyunca hareket ettir
+// Karakteri başlangıçta çok küçük yap
+gsap.set(character, { scale: 0.3 });
+
+// Karakteri checkpoint'ler boyunca hareket ettir ve büyüt
 gsap.to(character, {
-    scale: 3,
+    scaleY: 1.8,
+    scaleX: 1.5,
+    transformOrigin: 'bottom center',
     scrollTrigger: {
         trigger: storyContainer,
         start: 'top top',
@@ -116,7 +121,7 @@ gsap.to(character, {
             const currentX = moveDistance * progress;
 
             characterContainer.style.left = `calc(5% + ${currentX}px)`;
-            characterContainer.style.top = '65%';
+            characterContainer.style.top = '85%';
 
             // Checkpoint'lere yaklaştıkça renk değiştir
             checkpoints.forEach((cp, index) => {
